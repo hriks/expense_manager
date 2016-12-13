@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app myCol='lightblue'>  <h1 align=center>REGISTRATION FORM</h1> <br/><p align = center >
+<p>Name             : <input ng-model="a" placeholder = "Full Name" ></p>
+<p>Email ID         : <input ng-model="b" placeholder = "Email ID here"></p>
+<p>User ID			: <input ng-model="c" placeholder = "User ID"></p>
+<p>Password         : <input ng-model="d" placeholder = "Password "></p>
+<p>Confirm Password : <input ng-model="e" placeholder = "Re-type password"></p>
+
+
+<h2> YOURS ENTRIES ARE </h2>
+Name    : {{a}}<br/>
+Email   : {{b}}<br/>
+User ID : {{c}}<br/>
+password: {{d}}<br/>
+
+<h3>click Confirm to Register</h3>
+<button ng-click="value">Confirm</button>
+
+</div>
+
+</body>
+</html>
