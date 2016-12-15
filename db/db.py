@@ -67,6 +67,23 @@ def catagory_alreadyexits(USER, CATAGORIES, PRICE, DESCRIPTION):
         return error
 
 
+def filter_user_data(USER):
+    connection = get_connection()
+    cursor = connection.cursor()
+    fetch_db = """SELECT USERID, CATAGORIES, PRICE, DESCRIPTION  from LOGSS where USERID='%s'"""
+    fetch_db = fetch_db % (USER)
+    cursor.execute(fetch_db)
+    rows = cursor.fetchall()
+    for row in rows:
+        print "User ID = ", row[0]
+        print "Your Name = ", row[1]
+        print "Registered Name = ", row[2]
+        print "Password = ", row[3], "\n"
+    print "Operation done successfully"
+    cursor.close()
+    return rows
+
+
 def insert_db(USER, NAME, EMAIL, PASSWORDV):
     connection = get_connection()
     cursor = connection.cursor()
@@ -115,20 +132,6 @@ def authenticate(username, password):
     except Exception as error:
         return error
     connection.close()
-
-
-def select_db():
-    connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute("SELECT USERID, FULLNAME, EMAILID, PASSWORD  from LOGINSS")
-    rows = cursor.fetchall()
-    for row in rows:
-        print "User ID = ", row[0]
-        print "Your Name = ", row[1]
-        print "Registered Name = ", row[2]
-        print "Password = ", row[3], "\n"
-    print "Operation done successfully"
-    cursor.close()
 
 
 def update_db(id, ags, par):

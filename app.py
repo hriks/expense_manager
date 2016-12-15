@@ -20,7 +20,11 @@ def login():
         if (value == 1):
             print "login Succesfully"
             session['name'] = request.form['username']
-            return redirect(url_for('index'))
+            user_data = session['name']
+            print user_data
+            data = db.filter_user_data(user_data)
+            print type(data), data, len(data)
+            return render_template('index.html', error=error, data=data)
         else:
             error = 'Invalid username or password \
             Please try again!'
@@ -86,6 +90,18 @@ def catagory():
         return redirect(url_for('add'))
     flash('REQUEST PERFORMED!')
     return redirect('add')
+
+
+@app.route('/asd')
+def data_user():
+    error = None
+    data = None
+    if session['name']:
+        user_data = session['name']
+        print user_data
+        data = db.filter_user_data(user_data)
+        print type(data), data, len(data)
+        return render_template('index.html', error=error, data=data)
 
 
 if __name__ == '__main__':

@@ -67,7 +67,34 @@
                 <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center">
 
                     <h1 class="mbr-section-title display-1">DASHBOARD</h1>
-                    <p class="mbr-section-lead lead">DASH BOARD</p>
+                    <p class="mbr-section-lead lead">
+                      
+    <table border="5px" style="border-style:outset; border-width:2px; padding-left:4px; padding-right:4px; padding-top:1px; padding-bottom:1px" bgcolor="#33CCFF" width="921">
+    <tr style="text-align: center;font-size: 14px; background-color : #E5DDDB">
+    <td><font color="#000000" size="3"><strong>CATEGORY</strong></font></td>
+    <td><font color="#000000" size="3"><strong>PRICES</strong></font></td>
+     <td><font color="#000000" size="3"><strong>DESCRPTION</strong></font></td>
+     <td><font color="#000000" size="3"><strong>TOTAL EXPENDITURE</strong></font></td>
+     
+    </tr>
+    <font color="#000000">{% for n in data %}  
+    </font>  
+    <tr style="text-align: center;font-size: 10px;background-color : #E5DDDB;"><font color="#000000">
+    <td><b><font color="#000000" size="2">{{n[0]}}</font></b></td>
+    <td><b><font color="#000000" size="2">{{n[1]}}</font></b></td>
+    <td><b><font color="#000000" size="2">{{n[2]}}</font></b></td>
+    <td><b><font color="#000000" size="2"> </font></b></td>
+    
+            
+
+    </tr>
+    {% endfor %}
+    </table>
+
+
+
+
+                    </p>
                 </div>
             </div>
         </div>
