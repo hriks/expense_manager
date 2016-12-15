@@ -7,10 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
   <meta name="description" content="">
-  <title>Login</title>
+  <title>coustom</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+ 
   <link rel="stylesheet" href="{{ url_for('static',filename='assets/bootstrap-material-design-font/css/material.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='assets/web/assets/mobirise-icons/mobirise-icons.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='assets/tether/tether.min.css') }}">
@@ -19,12 +20,12 @@
   <link rel="stylesheet" href="{{ url_for('static',filename='assets/dropdown/css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='assets/theme/css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='assets/mobirise/css/mbr-additional.css') }}" type="text/css">
-  
+
   
   
 </head>
 <body>
-<section id="menu-2">
+<section id="menu-8">
 
     <nav class="navbar navbar-dropdown bg-color transparent navbar-fixed-top">
         <div class="container">
@@ -44,7 +45,9 @@
                         <div class="hamburger-icon"></div>
                     </button>
 
-                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="{{ url_for('future') }}">FUTURE SCOPE&nbsp;</a></li><li class="nav-item"><a class="nav-link link" href="{{ url_for('registration') }}">REGISTRATION&nbsp;</a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{ url_for('login') }}">LOGIN</a></li></ul>
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="{{ url_for('index') }}">{% if session['name'] %}
+            <strong>{{session['name']}} </strong>{% else %}<a href="{{ url_for('login') }}"> PLEASE LOGIN</a><br/>
+            {% endif %}&nbsp;</a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{ url_for('login') }}">LOG OUT</a></li></ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                         <div class="close-icon"></div>
                     </button>
@@ -57,7 +60,7 @@
 
 </section>
 
-<section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-9" style="background-image: url(static/assets/images/jumbotron.jpg);">
+<section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-e" style="background-image: url(static/assets/images/jumbotron.jpg);">
 
     
 
@@ -67,24 +70,53 @@
             <div class="row">
                 <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center">
 
-                    <h1 class="mbr-section-title display-1">EXPRESS LOGIN</h1>
-                    <p class="mbr-section-lead lead">{% if error %}
-Error:{{ error }} {% endif %}</p>
-<form action = "" method = post style="text-align: center; color = red">
-<p><font style="color: white"><strong> Username : </strong></font><input type = text name = username placeholder = "Username" size="29"></p>
-<p><font style="color: white"><strong> Password : </strong></font><input type = password name = password placeholder = "Password" size="29"></p></font>
-<p><div class="mbr-section-btn"> <input type = submit value = "Sign in"></p>
-</div>
+                    <h1 class="mbr-section-title display-1">ADD NEW CATAGORY</h1>
+                    <p class="mbr-section-lead lead">  
+                    <div class="mbr-table-cell">
+
+        <div class="container">
+            <div class="row">
+                <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center" >
+                    <h3 style="color: white">PLEASE FILL THE REQUIED DETAILS</h3>
+                    <p class="mbr-section-lead lead"><font style="color: red; font-size: '18'" ><b>{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}</b></font></p>
+                     
+                    <form action = "catagory" id="reg" method = post>
+<!--<p align="left"><font style="color: white"><b>User ID:</b></font><br><input id =field6 name="field6" type = "text" ng-model="a" placeholder = "Enter User ID" ></p>-->
+<p align="left"><font style="color: white"><b>Catagory:</b> </font><br><input id =field7 name="field7" type = "text" ng-model="b" placeholder = "Catagory"></p>
+<p align="left"><font style="color: white"><b>Prices:</b> </font><br><input id =field8 name="field8" type = "text" ng-model="c" placeholder = "Price"></p>
+<p align="left"><font style="color: white"><b>Description:</b> </font><br><input id =field9 name="field9" type = "text" ng-model="d" placeholder = "Description"></p>
+
+
+
+<input class="mbr-section-btn" type="submit" />
+</p></form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                    </p>
+                    
                 </div>
             </div>
         </div>
     </div>
 
     
-
 </section>
 
-<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-1" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
+<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-7" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
     
     <div class="container">
         <p class="text-xs-center">Copyright (c) 2016 EXPENSE MANAGER</p>
@@ -92,14 +124,16 @@ Error:{{ error }} {% endif %}</p>
 </footer>
 
 
-  <script src="{{ url_for('static',filename='assets/web/assets/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/web/assets/jquery/jquery.min.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/tether/tether.min.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/smooth-scroll/SmoothScroll.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/viewportChecker/jquery.viewportchecker.js') }}"></script>
+  <script src="{{ url_for('static',filename='assets/jarallax/jarallax.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/dropdown/js/script.min.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/touchSwipe/jquery.touchSwipe.min.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/theme/js/script.js') }}"></script>
+  
   
   
   <input name="animation" type="hidden">

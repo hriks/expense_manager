@@ -1,27 +1,146 @@
 <!DOCTYPE html>
 <html>
-<head><title>login</title></head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v3.9.2, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+  <meta name="description" content="">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <title>Register</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+  <link rel="stylesheet" href="{{ url_for('static',filename='assets/bootstrap-material-design-font/css/material.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='assets/web/assets/mobirise-icons/mobirise-icons.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='assets/tether/tether.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='assets/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='assets/animate.css/animate.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='assets/dropdown/css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='assets/theme/css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='assets/mobirise/css/mbr-additional.css') }}" type="text/css">
+  
+  
+</head>
 <body>
-<div ng-app="">  <h1 align=center>REGISTRATION FORM</h1> <br/><p align = center >
-<form action = "registform" id="reg" method = post>
-<p>Name             : <input id =field1 name="field1" type = "text" ng-model="a" placeholder = "Full Name" ></p>
-<p>Email ID         : <input id =field2 name="field2" type = "text" ng-model="b" placeholder = "Email ID here"></p>
-<p>User ID			: <input id =field3 name="field3" type = "text" ng-model="c" placeholder = "User ID"></p>
-<p>Password         : <input id =field4 name="field4" type = "password" ng-model="d" placeholder = "Password "></p>
-<p>Confirm Password : <input id =field5 name="field5" type = "password" ng-model="e" placeholder = "Re-type password"></p>
+<section id="menu-6">
+
+    <nav class="navbar navbar-dropdown bg-color transparent navbar-fixed-top">
+        <div class="container">
+
+            <div class="mbr-table">
+                <div class="mbr-table-cell">
+
+                    <div class="navbar-brand">
+                        <a href="{{ url_for('home') }}" class="mbri-cash mbr-iconfont mbr-iconfont-menu navbar-logo"></a>
+                        <a class="navbar-caption" href="{{ url_for('home') }}">EXPENSE MANAGER</a>
+                    </div>
+
+                </div>
+                <div class="mbr-table-cell">
+
+                    <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="hamburger-icon"></div>
+                    </button>
+
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="{{ url_for('future') }}">FUTURE SCOPE&nbsp;</a></li><li class="nav-item"><a class="nav-link link" href="{{ url_for('registration') }}">REGISTRATION&nbsp;</a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{ url_for('login') }}">LOGIN</a></li></ul>
+                    <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="close-icon"></div>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+</section>
+
+<section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-d" style="background-image: url(static/assets/images/jumbotron.jpg);">
+
+    
+<div ng-app=""><p style="text-align: center;">
+<font style="color: red; font-size: '18'" ><b>{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}</b></font></p>
+    <div class="mbr-table-cell">
+
+        <div class="container">
+            <div class="row">
+                <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center" >
 
 
-<h2> YOURS ENTRIES ARE </h2>
+                    <h2 style="color: white">REGISTRATION FORM</h2>
+                    <p class="mbr-section-lead lead">
+                     
+                    <form action = "registform" id="reg" method = post>
+<p align="left"><font style="color: white"><b>Name:</b></font><br><input id =field1 name="field1" type = "text" ng-model="a" placeholder = "Full Name" ></p>
+<p align="left"><font style="color: white"><b>Email ID:</b> </font><br><input id =field2 name="field2" type = "text" ng-model="b" placeholder = "Email ID here"></p>
+<p align="left"><font style="color: white"><b>User ID:</b> </font><br><input id =field3 name="field3" type = "text" ng-model="c" placeholder = "User ID"></p>
+<p align="left"><font style="color: white"><b>Password:</b> </font><br><input id =field4 name="field4" type = "password" ng-model="d" placeholder = "Password "></p>
+<p align="left"><font style="color: white"><b>Confirm Password:</b>  </font><br><input id =field5 name="field5" type = "password" ng-model="e" placeholder = "Re-type password"></p>
+
+
+
+<input class="mbr-section-btn" type="submit" />
+</p></form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="mbr-table-cell">
+
+        <div class="container">
+            <div class="row">
+                <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center" >
+
+                    <h1 class="mbr-section-title display-1">USER RESPONSE </h1>
+                    <p class="mbr-section-lead lead">
+                
+<p align="left" style="color: white"><b>
 Name    : {{'{{a}}'}}<br/>
 Email   : {{'{{b}}'}}<br/>
 User ID : {{'{{c}}'}}<br/>
-password: {{'{{d}}'}}<br/>
+password: {{'{{d}}'}}<br/></b><div class="card-img"><img src="static/assets/images/code-man.jpg" class="card-img-top" height="250" width="450"></div>
+</p></div>
 
-<h3>click Confirm to Register</h3>
-<input type="submit" />
-</p></form>
-</div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
-</body>
+</section>
+
+<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-5" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
+    
+    <div class="container">
+        <p class="text-xs-center">Copyright (c) 2016 EXPENSE MANAGER</p>
+    </div>
+</footer>
+
+
+  <script src="{{ url_for('static',filename='assets/web/assets/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='assets/tether/tether.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='assets/smooth-scroll/SmoothScroll.js') }}"></script>
+  <script src="{{ url_for('static',filename='assets/viewportChecker/jquery.viewportchecker.js') }}"></script>
+  <script src="{{ url_for('static',filename='assets/jarallax/jarallax.js') }}"></script>
+  <script src="{{ url_for('static',filename='assets/dropdown/js/script.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='assets/touchSwipe/jquery.touchSwipe.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='assets/theme/js/script.js') }}"></script>
+  
+  
+  <input name="animation" type="hidden">
+  </body>
 </html>

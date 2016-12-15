@@ -27,8 +27,44 @@ def create_db():
        EMAIL            TEXT     NOT NULL,
        PASSWORD        TEXT);''')
     print "Table created successfully"
-    get_connection().commit()
-    get_connection().close()
+    cursor.execute('''CREATE TABLE LOGSS
+       (USERID       TEXT   REFERENCES LOGS(USERID)  NOT Null,
+       CATAGORIES           TEXT   UNIQUE   NOT NULL,
+       PRICE            INT     NOT NULL,
+       DESCRIPTION        TEXT);''')
+    connection.commit()
+    connection.close()
+
+
+def insert_catagories(USER, CATAGORIES, PRICE, DESCRIPTION):
+    connection = get_connection()
+    cursor = connection.cursor()
+    print "cur is created"
+    query = """INSERT INTO LOGSS(USERID,CATAGORIES,PRICE,DESCRIPTION) VALUES('%s', '%s', %s, '%s');"""
+    query = query % (
+        USER, CATAGORIES, PRICE, DESCRIPTION)
+    print query
+    cursor.execute(query)
+    connection.commit()
+    print "Records created successfully"
+    connection.close()
+
+
+def catagory_alreadyexits(USER, CATAGORIES, PRICE, DESCRIPTION):
+    connection = get_connection()
+    cursor = connection.cursor()
+    query = """SELECT USERID from LOGSS where CATAGORIES='%s';"""
+    query = query % (CATAGORIES, )
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    print rows
+    try:
+        if (len(rows) == 0):
+            insert_catagories(USER, CATAGORIES, PRICE, DESCRIPTION)
+        else:
+            return 1
+    except Exception as error:
+        return error
 
 
 def insert_db(USER, NAME, EMAIL, PASSWORDV):
@@ -42,6 +78,7 @@ def insert_db(USER, NAME, EMAIL, PASSWORDV):
     cursor.execute(query)
     connection.commit()
     print "Records created successfully"
+    connection.close()
 
 
 def user_alreadyexits(USER, NAME, EMAIL, PASSWORDV):
@@ -59,6 +96,7 @@ def user_alreadyexits(USER, NAME, EMAIL, PASSWORDV):
             return 1
     except Exception as error:
         return error
+    connection.close()
 
 
 def authenticate(username, password):

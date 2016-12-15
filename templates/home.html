@@ -5,9 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v3.9.2, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/images/logo.png') }}" type="image/x-icon">
   <meta name="description" content="">
-  <title>Login</title>
+  <title>Home</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
@@ -24,7 +24,7 @@
   
 </head>
 <body>
-<section id="menu-2">
+<section id="menu-0">
 
     <nav class="navbar navbar-dropdown bg-color transparent navbar-fixed-top">
         <div class="container">
@@ -33,7 +33,7 @@
                 <div class="mbr-table-cell">
 
                     <div class="navbar-brand">
-                        <a href="{{ url_for('home') }}" class="mbri-cash mbr-iconfont mbr-iconfont-menu navbar-logo"></a>
+                        <a href="" class="mbri-cash mbr-iconfont mbr-iconfont-menu navbar-logo"></a>
                         <a class="navbar-caption" href="{{ url_for('home') }}">EXPENSE MANAGER</a>
                     </div>
 
@@ -57,7 +57,7 @@
 
 </section>
 
-<section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-9" style="background-image: url(static/assets/images/jumbotron.jpg);">
+<section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-1" style="background-image: url(static/assets/images/jumbotron.jpg);">
 
     
 
@@ -67,24 +67,18 @@
             <div class="row">
                 <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center">
 
-                    <h1 class="mbr-section-title display-1">EXPRESS LOGIN</h1>
-                    <p class="mbr-section-lead lead">{% if error %}
-Error:{{ error }} {% endif %}</p>
-<form action = "" method = post style="text-align: center; color = red">
-<p><font style="color: white"><strong> Username : </strong></font><input type = text name = username placeholder = "Username" size="29"></p>
-<p><font style="color: white"><strong> Password : </strong></font><input type = password name = password placeholder = "Password" size="29"></p></font>
-<p><div class="mbr-section-btn"> <input type = submit value = "Sign in"></p>
-</div>
+                    <h1 class="mbr-section-title display-1">EXPENSE MANAGER</h1>
+                    <p class="mbr-section-lead lead">One place to manage all expenses<br>Add Coustom Catagories</p>
+                    <div class="mbr-section-btn"><a class="btn btn-lg btn-primary" href="{{ url_for('logina') }}">LOGIN</a> </div>
                 </div>
             </div>
         </div>
     </div>
 
-    
 
 </section>
 
-<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-1" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
+<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-2" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
     
     <div class="container">
         <p class="text-xs-center">Copyright (c) 2016 EXPENSE MANAGER</p>
@@ -97,6 +91,7 @@ Error:{{ error }} {% endif %}</p>
   <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/smooth-scroll/SmoothScroll.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/viewportChecker/jquery.viewportchecker.js') }}"></script>
+  <script src="{{ url_for('static',filename='assets/jarallax/jarallax.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/dropdown/js/script.min.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/touchSwipe/jquery.touchSwipe.min.js') }}"></script>
   <script src="{{ url_for('static',filename='assets/theme/js/script.js') }}"></script>
