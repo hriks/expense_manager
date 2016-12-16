@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, url_for, flash, session
+from flask import Flask, redirect, render_template, request, url_for, flash, session, jsonify
 from db import db
 
 app = Flask(__name__)
@@ -24,12 +24,21 @@ def login():
             print user_data
             data = db.filter_user_data(user_data)
             print type(data), data, len(data)
-            return render_template('index.html', error=error, data=data)
+            data_user_get = db.filter_user_chart(user_data)
+            print data_user_get
+            return render_template('index.html', error=error, data=data, data_chart=data_user_get)
         else:
             error = 'Invalid username or password \
             Please try again!'
             return render_template('login.html', error=error, session=session)
     return render_template('login.html')
+
+
+@app.route('/data')
+def data():
+    user_data = session['name']
+    data_user_get = db.filter_user_chart(user_data)
+    return jsonify(data_user_get)
 
 
 @app.route('/reg?is%2')

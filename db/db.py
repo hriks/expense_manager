@@ -67,6 +67,21 @@ def catagory_alreadyexits(USER, CATAGORIES, PRICE, DESCRIPTION):
         return error
 
 
+def filter_user_chart(USER):
+    connection = get_connection()
+    cursor = connection.cursor()
+    fetch_db = """select catagories,sum(price) from logss where userid='%s' group by catagories"""
+    fetch_db = fetch_db % (USER)
+    cursor.execute(fetch_db)
+    rows = cursor.fetchall()
+    for row in rows:
+        print "catagories", row[0], type(row[0])
+        print "price = ", row[1]
+    print "Operation done successfully"
+    cursor.close()
+    return rows
+
+
 def filter_user_data(USER):
     connection = get_connection()
     cursor = connection.cursor()

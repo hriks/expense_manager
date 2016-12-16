@@ -80,9 +80,9 @@
     <font color="#000000">{% for n in data %}  
     </font>  
     <tr style="text-align: center;font-size: 10px;background-color : #E5DDDB;"><font color="#000000">
-    <td><b><font color="#000000" size="2">{{n[0]}}</font></b></td>
     <td><b><font color="#000000" size="2">{{n[1]}}</font></b></td>
     <td><b><font color="#000000" size="2">{{n[2]}}</font></b></td>
+    <td><b><font color="#000000" size="2">{{n[3]}}</font></b></td>
     <td><b><font color="#000000" size="2"> </font></b></td>
     
             
@@ -90,11 +90,37 @@
     </tr>
     {% endfor %}
     </table>
+                  </p>
+                  {{data_chart}}
+                  
+                                   
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+       <div id="piechart" style="width: 900px; height: 500px;"></div>
+       
+<script>
+var get_data = $.get('/data');
+get_data.done(function(results))
+google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(results);
 
 
+        var options = {
+          title: 'My Expense'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+     </script>      
+
+                  
+                  
 
 
-                    </p>
                 </div>
             </div>
         </div>
