@@ -10,6 +10,12 @@ def home():
     return render_template('home.html')
 
 
+@app.route('/create_db')
+def create_db():
+    db.create_db()
+    return "created"
+
+
 @app.route('/logina', methods=['GET', 'POST'])
 def login():
     error = None
@@ -38,6 +44,7 @@ def login():
 def data():
     user_data = session['name']
     data_user_get = db.filter_user_chart(user_data)
+    print type(jsonify(data_user_get))
     return jsonify(data_user_get)
 
 
@@ -65,6 +72,20 @@ def index():
     return render_template('index.html', session=session)
 
 
+@app.after_request
+def add_header(response):
+    # response.cache_control.no_store = True
+    if 'Cache-Control' not in response.headers:
+        response.headers['Cache-Control'] = 'no-store'
+    return response
+
+
+@app.route('/clearsession')
+def clearsession():
+    session.clear()
+    return redirect(url_for('logina'))
+
+
 @app.route('/future')
 def future():
     return render_template('upcoming.html')
@@ -80,12 +101,6 @@ def add():
     return render_template('add_catagories.html')
 
 
-@app.route('/clearsession')
-def clearsession():
-    session.clear()
-    return redirect(url_for('logina'))
-
-
 @app.route("/catagory", methods=['POST'])
 def catagory():
     data_catagory = db.catagory_alreadyexits(session['name'],
@@ -96,7 +111,11 @@ def catagory():
         flash('ERROR! CATAGORY ALREADY SATISFIED OR SOMETHING WENT WRONG PLEASE CHECK NEXT MESSAGE TO CONFIRM')
     else:
         flash(data_catagory)
-        return redirect(url_for('add'))
+        user_data = session['name']
+        print user_data
+        data = db.filter_user_data(user_data)
+        print type(data), data, len(data)
+        return render_template('index.html', data=data)
     flash('REQUEST PERFORMED!')
     return redirect('add')
 

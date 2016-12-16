@@ -19,21 +19,24 @@ def get_connection():
 
 
 def create_db():
-    connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute('''CREATE TABLE LOGS
-       (USERID       TEXT    UNIQUE    NOT Null,
-       NAME           TEXT    NOT NULL,
-       EMAIL            TEXT     NOT NULL,
-       PASSWORD        TEXT);''')
-    print "Table created successfully"
-    cursor.execute('''CREATE TABLE LOGSS
-       (USERID       TEXT   REFERENCES LOGS(USERID)  NOT Null,
-       CATAGORIES           TEXT   UNIQUE   NOT NULL,
-       PRICE            INT     NOT NULL,
-       DESCRIPTION        TEXT);''')
-    connection.commit()
-    connection.close()
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute('''CREATE TABLE LOGS
+        (USERID       TEXT    UNIQUE    NOT Null,
+         NAME           TEXT    NOT NULL,
+         EMAIL            TEXT     NOT NULL,
+         PASSWORD        TEXT);''')
+        print "Table created successfully"
+        cursor.execute('''CREATE TABLE LOGSS
+         (USERID       TEXT   REFERENCES LOGS(USERID)  NOT Null,
+            CATAGORIES           TEXT   UNIQUE   NOT NULL,
+             PRICE            INT     NOT NULL,
+            DESCRIPTION        TEXT);''')
+        connection.commit()
+        connection.close()
+    except Exception as error:
+        return error
 
 
 def insert_catagories(USER, CATAGORIES, PRICE, DESCRIPTION):

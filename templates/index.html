@@ -68,22 +68,21 @@
 
                     <h1 class="mbr-section-title display-1">DASHBOARD</h1>
                     <p class="mbr-section-lead lead">
-                      
+                      <div ng-app = "">
     <table border="5px" style="border-style:outset; border-width:2px; padding-left:4px; padding-right:4px; padding-top:1px; padding-bottom:1px" bgcolor="#33CCFF" width="921">
     <tr style="text-align: center;font-size: 14px; background-color : #E5DDDB">
     <td><font color="#000000" size="3"><strong>CATEGORY</strong></font></td>
     <td><font color="#000000" size="3"><strong>PRICES</strong></font></td>
      <td><font color="#000000" size="3"><strong>DESCRPTION</strong></font></td>
-     <td><font color="#000000" size="3"><strong>TOTAL EXPENDITURE</strong></font></td>
+     
      
     </tr>
     <font color="#000000">{% for n in data %}  
     </font>  
     <tr style="text-align: center;font-size: 10px;background-color : #E5DDDB;"><font color="#000000">
     <td><b><font color="#000000" size="2">{{n[1]}}</font></b></td>
-    <td><b><font color="#000000" size="2">{{n[2]}}</font></b></td>
-    <td><b><font color="#000000" size="2">{{n[3]}}</font></b></td>
-    <td><b><font color="#000000" size="2"> </font></b></td>
+    <td ng-model="a"> <b><font color="#000000" size="2">{{n[2]}}</font></b></td>
+    <td ng-model="b"> <b><font color="#000000" size="2">{{n[3]}}</font></b></td>
     
             
 
@@ -91,24 +90,24 @@
     {% endfor %}
     </table>
                   </p>
-                  {{data_chart}}
                   
                                    
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-       <div id="piechart" style="width: 900px; height: 500px;"></div>
-       
-<script>
-var get_data = $.get('/data');
-get_data.done(function(results))
-google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable(results);
-
-
-        var options = {
-          title: 'My Expense'
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<div id="piechart" style="width: 900px; height: 500px;"></div>
+<script type="text/javascript">
+ google.charts.load('current', {'packages':['corechart']});
+ google.charts.setOnLoadCallback(drawChart);
+       function drawChart() {
+        ajax({
+        url: "list",
+        dataType: "json",
+        success: function (jsonData)
+          var jsonData = $.get('/data').responseText;  
+          var data = google.visualization.DataTabletoJSON(jsonData);
+          
+          var options = {
+                title: 'My Expense'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
