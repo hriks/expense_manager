@@ -10,10 +10,10 @@ port = settings.PORT
 
 def get_connection():
     conn = pg.connect(
-        database='cred_db',
-        user='postgres',
-        password='postgres',
-        host='127.0.0.1',
+        database='dkmkicoa',
+        user='dkmkicoa',
+        password='_d3TVkeZNgz2rumJW5KDbF_XzLb8cNQm',
+        host='horton.elephantsql.com',
         port=5432)
     return conn
 
