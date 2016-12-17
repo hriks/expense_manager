@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, url_for, flash, session, jsonify
+from flask import Flask, redirect, render_template, request, url_for, flash, session
 from db import db
 
 app = Flask(__name__)
@@ -31,21 +31,24 @@ def login():
             data = db.filter_user_data(user_data)
             print type(data), data, len(data)
             data_user_get = db.filter_user_chart(user_data)
-            print data_user_get
-            return render_template('index.html', error=error, data=data, data_chart=data_user_get)
+            graph_data = []
+            for elem in data_user_get:
+                cat = elem[0]
+                exp = elem[1]
+                li = [cat, int(exp)]
+                graph_data.append(li)
+            graph_data.insert(0, ['Category', 'Expenses'])
+            print "Graph data ", graph_data
+            return render_template(
+                'index.html',
+                error=error,
+                data=data,
+                data_chart=graph_data)
         else:
             error = 'Invalid username or password \
             Please try again!'
             return render_template('login.html', error=error, session=session)
     return render_template('login.html')
-
-
-@app.route('/data')
-def data():
-    user_data = session['name']
-    data_user_get = db.filter_user_chart(user_data)
-    print type(jsonify(data_user_get))
-    return jsonify(data_user_get)
 
 
 @app.route('/reg?is%2')
@@ -103,6 +106,7 @@ def add():
 
 @app.route("/catagory", methods=['POST'])
 def catagory():
+    error = None
     data_catagory = db.catagory_alreadyexits(session['name'],
                                              request.form['field7'],
                                              request.form['field8'],
@@ -115,7 +119,20 @@ def catagory():
         print user_data
         data = db.filter_user_data(user_data)
         print type(data), data, len(data)
-        return render_template('index.html', data=data)
+        data_user_get = db.filter_user_chart(user_data)
+        graph_data = []
+        for elem in data_user_get:
+            cat = elem[0]
+            exp = elem[1]
+            li = [cat, int(exp)]
+            graph_data.append(li)
+        graph_data.insert(0, ['Category', 'Expenses'])
+        print "Graph data ", graph_data
+        return render_template(
+            'index.html',
+            error=error,
+            data=data,
+            data_chart=graph_data)
     flash('REQUEST PERFORMED!')
     return redirect('add')
 
@@ -136,5 +153,5 @@ if __name__ == '__main__':
     app.debug = True
     app.run(
         host="0.0.0.0",
-        port=int("80")
+        port=int("8081")
     )
