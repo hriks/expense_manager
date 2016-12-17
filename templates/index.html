@@ -44,7 +44,7 @@
 
                     <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="">{% if session['name'] %}
             <strong>{{session['name']}} </strong>{% else %}<a href="{{ url_for('login') }}"> PLEASE LOGIN</a>
-            {% endif %}&nbsp;</a></li><li class="nav-item"><a class="nav-link link" href="{{ url_for('add') }}">ADD CATEGORY&nbsp;</a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{ url_for('clearsession') }}">LOG OUT</a></li></ul>
+            {% endif %}&nbsp;</a></li><li class="nav-item"><a class="nav-link link" href="{{ url_for('add') }}">ADD NEW EXPENSE&nbsp;</a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{ url_for('clearsession') }}">LOG OUT</a></li></ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                         <div class="close-icon"></div>
                     </button>
