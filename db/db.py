@@ -3,9 +3,9 @@ import psycopg2 as pg
 
 def get_connection():
     conn = pg.connect(
-        database='dkmkicoa',
-        user='dkmkicoa',
-        password='_d3TVkeZNgz2rumJW5KDbF_XzLb8cNQm',
+        database='dkmkico',
+        user='dkmkico',
+        password='_d3TVkeZNgz2rumJW5KDbF_XzLb8cN',
         host='horton.elephantsql.com',
         port=5432)
     return conn
