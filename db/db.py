@@ -1,11 +1,4 @@
 import psycopg2 as pg
-import settings
-
-database = settings.DATABASE
-user = settings.USER
-password = settings.PASSWORD
-host = settings.PORT
-port = settings.PORT
 
 
 def get_connection():
@@ -150,40 +143,3 @@ def authenticate(username, password):
     except Exception as error:
         return error
     connection.close()
-
-
-def update_db(id, ags, par):
-    connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute("UPDATE LOGINSS set ags = par where USERID=id")
-    cursor.commit()
-    print "Total number of rows updated :", cursor.rowcount
-
-    cursor.execute("SELECT USERID, FULLNAME, EMAILID, PASSWORD  from LOGINSS")
-    rows = cursor.fetchall()
-    for row in rows:
-        print "USER ID = ", row[0]
-        print "FULL NAME = ", row[1]
-        print "REGISTERED EMAIL ID = ", row[2]
-        print "PASSWORD = ", row[3], "\n"
-
-        print "Operation done successfully"
-        cursor.close()
-
-
-def delete_db(useri):
-    connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute("DELETE from LOGINSS where USERID=useri;")
-    cursor.commit()
-    print "Total number of rows deleted :", cursor.rowcount
-    cursor.execute("SELECT USERID, FULLNAME, EMAILID, PASSWORD  from LOGINSS")
-    rows = cursor.fetchall()
-    for row in rows:
-        print "USER ID = ", row[0]
-        print "FULL NAME = ", row[1]
-        print "REGISTERED EMAIL = ", row[2]
-        print "PASSWORD = ", row[3], "\n"
-
-    print "Operation done successfully"
-    cursor.close()
