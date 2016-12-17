@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v3.9.2, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='assets/images/logo.png') }}" type="image/x-icon">
   <meta name="description" content="">
   <title>coustom</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
@@ -91,9 +91,9 @@
                      
                     <form action = "catagory" id="reg" method = post>
 <!--<p align="left"><font style="color: white"><b>User ID:</b></font><br><input id =field6 name="field6" type = "text" ng-model="a" placeholder = "Enter User ID" ></p>-->
-<p align="left"><font style="color: white"><b>Catagory:</b> </font><br><input id =field7 name="field7" type = "text" ng-model="b" placeholder = "Catagory"></p>
-<p align="left"><font style="color: white"><b>Prices:</b> </font><br><input id =field8 name="field8" type = "text" ng-model="c" placeholder = "Price"></p>
-<p align="left"><font style="color: white"><b>Description:</b> </font><br><input id =field9 name="field9" type = "text" ng-model="d" placeholder = "Description"></p>
+<p align="left"><font style="color: white"><b>Catagory:</b> </font><br><input id =field7 name="field7" type = "text" ng-model="b" placeholder = "Enter Catagory" size="45"></p>
+<p align="left"><font style="color: white"><b>Prices:</b> </font><br><input id =field8 name="field8" type = "text" ng-model="c" placeholder = "Enter Price(Numeric)" size="45"></p>
+<p align="left"><font style="color: white"><b>Description:</b> </font><br><input id =field9 name="field9" type = "text" ng-model="d" placeholder = "ADD Catagory Description here" style="height: 200px; width: 700px"></p>
 
 
 
