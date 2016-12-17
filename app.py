@@ -72,7 +72,26 @@ def register():
 
 @app.route('/login')
 def index():
-    return render_template('index.html', session=session)
+    error = None
+    user_data = session['name']
+    print user_data
+    data = db.filter_user_data(user_data)
+    print type(data), data, len(data)
+    data_user_get = db.filter_user_chart(user_data)
+    graph_data = []
+    for elem in data_user_get:
+        cat = elem[0]
+        exp = elem[1]
+        li = [cat, int(exp)]
+        graph_data.append(li)
+    graph_data.insert(0, ['Category', 'Expenses'])
+    print "Graph data ", graph_data
+    return render_template(
+        'index.html',
+        error=error,
+        data=data,
+        data_chart=graph_data,
+        session=session)
 
 
 @app.after_request
