@@ -126,34 +126,40 @@ def add():
 @app.route("/catagory", methods=['POST'])
 def catagory():
     error = None
-    data_catagory = db.catagory_alreadyexits(session['name'],
-                                             request.form['field7'],
-                                             request.form['field8'],
-                                             request.form['field9'])
-    if (data_catagory == 1):
-        flash('ERROR! CATAGORY ALREADY SATISFIED OR SOMETHING WENT WRONG PLEASE CHECK NEXT MESSAGE TO CONFIRM')
+    if 'name' in session:
+        data_catagory = db.catagory_alreadyexits(session['name'],
+                                                 request.form['field7'],
+                                                 request.form['field8'],
+                                                 request.form['field9'])
+        if (data_catagory == 1):
+            flash('ERROR! CATAGORY ALREADY SATISFIED OR SOMETHING WENT WRONG PLEASE CHECK NEXT MESSAGE TO CONFIRM')
+        else:
+            flash(data_catagory)
+            user_data = session['name']
+            print user_data
+            data = db.filter_user_data(user_data)
+            print type(data), data, len(data)
+            data_user_get = db.filter_user_chart(user_data)
+            graph_data = []
+            for elem in data_user_get:
+                cat = elem[0]
+                exp = elem[1]
+                li = [cat, int(exp)]
+                graph_data.append(li)
+            graph_data.insert(0, ['Category', 'Expenses'])
+            print "Graph data ", graph_data
+            return render_template(
+                'index.html',
+                error=error,
+                data=data,
+                data_chart=graph_data)
+        flash('REQUEST PERFORMED!')
+        return redirect('add')
     else:
-        flash(data_catagory)
-        user_data = session['name']
-        print user_data
-        data = db.filter_user_data(user_data)
-        print type(data), data, len(data)
-        data_user_get = db.filter_user_chart(user_data)
-        graph_data = []
-        for elem in data_user_get:
-            cat = elem[0]
-            exp = elem[1]
-            li = [cat, int(exp)]
-            graph_data.append(li)
-        graph_data.insert(0, ['Category', 'Expenses'])
-        print "Graph data ", graph_data
-        return render_template(
-            'index.html',
-            error=error,
-            data=data,
-            data_chart=graph_data)
-    flash('REQUEST PERFORMED!')
-    return redirect('add')
+        flash(
+            'Please Login to Perform Action'
+        )
+        return redirect('logina')
 
 
 @app.route('/asd')
