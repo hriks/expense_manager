@@ -154,24 +154,27 @@ def catagory():
                 data=data,
                 data_chart=graph_data)
         flash('REQUEST PERFORMED!')
-        return redirect('add')
+        return redirect(url_for('add'))
     else:
         flash(
             'Please Login to Perform Action'
         )
-        return redirect('logina')
+        return redirect(url_for('logina'))
 
 
 @app.route('/asd')
 def data_user():
     error = None
     data = None
-    if session['name']:
+    if 'name' in session:
         user_data = session['name']
         print user_data
         data = db.filter_user_data(user_data)
         print type(data), data, len(data)
         return render_template('index.html', error=error, data=data)
+    else:
+        flash('ERROR: Please Login to Preform this actions')
+        return redirect(url_for('logina'))
 
 
 if __name__ == '__main__':
